@@ -18,6 +18,10 @@ services:
       MYSQL_DATABASE: myproject
       MYSQL_USER: myprojectuser
       MYSQL_PASSWORD: myprojectpassword
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+    ports:
+      - "3306:3306"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -28,3 +32,7 @@ services:
       - "8080:80"
     depends_on:
       - db
+
+volumes:
+  mysql_data:
+    driver: local
